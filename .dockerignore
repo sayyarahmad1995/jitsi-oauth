@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+.vscode/
+.idea/
+.git
+*.user
+*.suo
+*.log
+docker-compose*.yml
+**/node_modules
+**/packages
+out/
