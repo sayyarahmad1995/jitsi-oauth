@@ -10,8 +10,7 @@ public interface IJwtService
       string Name,
       string room = "*",
       string picture = null,
-      bool emailVerified = false,
-      bool moderator = false
+      bool emailVerified = false
    );
 
    string JitsiDomain { get; }
