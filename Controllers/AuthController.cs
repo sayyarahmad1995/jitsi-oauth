@@ -49,7 +49,8 @@ public class AuthController : BaseApiController
          claims.Name,
          room,
          claims.picture,
-         claims.email_verified
+         claims.email_verified,
+         claims.moderator
       );
 
       return Redirect($"https://{_jwt.JitsiDomain}/{room}?jwt={jitsiToken}");

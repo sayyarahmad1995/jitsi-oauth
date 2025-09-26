@@ -23,7 +23,8 @@ public class JwtService : IJwtService
       string Name,
       string room = "*",
       string picture = null,
-      bool emailVerified = false
+      bool emailVerified = false,
+      bool moderator = false
    )
    {
       if (string.IsNullOrWhiteSpace(username))
@@ -48,6 +49,7 @@ public class JwtService : IJwtService
          ["email"] = email,
          ["email_verified"] = emailVerified,
          ["avatar"] = avatarUrl,
+         ["moderator"] = moderator
       };
 
       var context = new Dictionary<string, object>
