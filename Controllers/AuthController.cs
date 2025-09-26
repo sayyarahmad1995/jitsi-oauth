@@ -11,9 +11,11 @@ public class AuthController : BaseApiController
    private readonly IKeycloakService _keycloak;
    private readonly IJwtService _jwt;
    private readonly IClaimMapper _mapper;
+   private readonly ILogger<AuthController> _logger;
 
-   public AuthController(IKeycloakService keycloak, IJwtService jwt, IClaimMapper mapper)
+   public AuthController(IKeycloakService keycloak, IJwtService jwt, IClaimMapper mapper, ILogger<AuthController> logger)
    {
+      _logger = logger;
       _mapper = mapper;
       _keycloak = keycloak;
       _jwt = jwt;
@@ -34,6 +36,7 @@ public class AuthController : BaseApiController
       var tokenJson = await _keycloak.ExchangeCodeForTokenAsync(code);
       var idToken = tokenJson.RootElement.GetProperty("id_token").GetString();
       var userPayload = TokenHelper.ParseIdToken(idToken);
+      _logger.LogInformation(idToken);
 
       var claims = _mapper.Map<KeycloakUserClaimsDTO>(userPayload);
 
