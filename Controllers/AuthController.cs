@@ -39,6 +39,7 @@ public class AuthController : BaseApiController
       _logger.LogInformation(idToken);
 
       var claims = _mapper.Map<KeycloakUserClaimsDTO>(userPayload);
+      _logger.LogInformation(claims.ToString());
 
       var room = string.IsNullOrEmpty(state) ? "*" : state;
 
