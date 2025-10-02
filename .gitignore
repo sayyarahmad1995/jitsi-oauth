@@ -1,0 +1,61 @@
+# ------------------------------------------------------------------
+# ASP.NET Core Web API - jitsi-oauth .gitignore
+# ------------------------------------------------------------------
+
+# Build results
+bin/
+obj/
+out/
+[Bb]uild/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# IDE settings
+.vscode/
+.idea/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Package managers
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+
+# Dependency folders
+node_modules/
+packages/
+wwwroot/lib/
+
+# Environment / secrets
+.env
+appsettings.Development.json
+appsettings.*.local.json
+
+# Logs
+*.log
+
+# Database / cache / backups
+*.dbmdl
+*.bak
+*.ldf
+*.mdf
+*.sqlite
+*.db
+
+# Temporary / misc
+*.swp
+*.tmp
+*.pid
+
+# Docker (optional for local overrides)
+docker-compose.override.yml
+.docker/
