@@ -9,10 +9,8 @@ public class JwtService : IJwtService
 {
    public string JitsiDomain { get; }
    private readonly IConfiguration _config;
-   private readonly ILogger<JwtService> _logger;
-   public JwtService(ILogger<JwtService> logger, IConfiguration config)
+   public JwtService(IConfiguration config)
    {
-      _logger = logger;
       _config = config;
       JitsiDomain = _config["JITSI_DOMAIN"];
    }
