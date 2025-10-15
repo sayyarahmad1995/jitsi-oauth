@@ -54,7 +54,7 @@ public class AuthController : BaseApiController
 
       bool disablePrejoinPage = _config["DISABLE_PREJOIN_PAGE"] == "true";
       if (disablePrejoinPage)
-         configParams.Add("#config.prejoinConfig.enabled=true");
+         configParams.Add("config.prejoinConfig.enabled=false");
 
       if (configParams.Count > 0)
          redirectUrl += "#" + string.Join("&", configParams);
