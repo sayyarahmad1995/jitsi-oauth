@@ -11,8 +11,10 @@ public class AuthController : BaseApiController
    private readonly IKeycloakService _keycloak;
    private readonly IJwtService _jwt;
    private readonly IClaimMapper _mapper;
-   public AuthController(IKeycloakService keycloak, IJwtService jwt, IClaimMapper mapper)
+   private readonly IConfiguration _config;
+   public AuthController(IKeycloakService keycloak, IJwtService jwt, IClaimMapper mapper, IConfiguration config)
    {
+      _config = config;
       _mapper = mapper;
       _keycloak = keycloak;
       _jwt = jwt;
@@ -46,6 +48,17 @@ public class AuthController : BaseApiController
          claims.email_verified
       );
 
-      return Redirect($"https://{_jwt.JitsiDomain}/{room}?jwt={jitsiToken}");
+      var redirectUrl = $"https://{_jwt.JitsiDomain}/{room}?jwt={jitsiToken}";
+
+      var configParams = new List<string>();
+
+      bool disablePrejoinPage = _config["DISABLE_PREJOIN_PAGE"] == "true";
+      if (disablePrejoinPage)
+         configParams.Add("#config.prejoinConfig.enabled=true");
+
+      if (configParams.Count > 0)
+         redirectUrl += "#" + string.Join("&", configParams);
+
+      return Redirect(redirectUrl);
    }
 }
